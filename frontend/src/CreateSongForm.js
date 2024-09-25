@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "@emotion/styled";
 import { useDispatch } from "react-redux";
 import { createSongRequest, updateSongRequest } from "./redux/songsSlice";
-
+const defaultImage = "https://via.placeholder.com/150";
 // Styled components for the form in a modal
 const FormWrapper = styled.form`
   display: flex;
@@ -74,6 +74,7 @@ function CreateSongForm({ song, onClose }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const songImage = image || defaultImage;
 
     if (song) {
       // Editing existing song
@@ -84,7 +85,7 @@ function CreateSongForm({ song, onClose }) {
           artist,
           album,
           year,
-          image,
+          image: songImage,
         })
       );
     } else {
@@ -95,7 +96,7 @@ function CreateSongForm({ song, onClose }) {
           artist,
           album,
           year,
-          image,
+          image: songImage,
         })
       );
     }
